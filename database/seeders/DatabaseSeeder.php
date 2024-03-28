@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Account;
 use App\Models\AppToken;
 use App\Models\Company;
 use App\Models\Item;
@@ -20,50 +19,39 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $accounts = Account::factory(10)->create();
-        foreach ($accounts as $account) {
-            $this->createUsers($account);
+            $this->createUsers();
 
-            $appTokens = $this->createAppTokens($account);
-            $campaigns = $this->createNotificationCampaigns($account);
+            $appTokens = $this->createAppTokens();
+            $campaigns = $this->createNotificationCampaigns();
             $this->createNotifications($campaigns, $appTokens);
 
-            $companies = $this->createCompanies($account);
+            $companies = $this->createCompanies();
             foreach ($companies as $company) {
                 $this->createCompanyItems($company);
             }
-        }
     }
 
-    private function createUsers(Account $account, int $count = 20): Collection
+    private function createUsers(int $count = 20): Collection
     {
-        return User::factory($count)->create([
-            'account_id' => $account->id,
-        ]);
+        return User::factory($count)->create();
     }
 
     /**
-     * @param Account $account
      * @param int $count
      * @return Collection<AppToken>
      */
-    private function createAppTokens(Account $account, int $count = 20): Collection
+    private function createAppTokens(int $count = 20): Collection
     {
-        return AppToken::factory($count)->create([
-            'account_id' => $account->id,
-        ]);
+        return AppToken::factory($count)->create();
     }
 
     /**
-     * @param Account $account
      * @param int $count
      * @return Collection<NotificationCampaign>
      */
-    private function createNotificationCampaigns(Account $account, int $count = 5): Collection
+    private function createNotificationCampaigns(int $count = 5): Collection
     {
-        return NotificationCampaign::factory($count)->create([
-            'account_id' => $account->id,
-        ]);
+        return NotificationCampaign::factory($count)->create();
     }
 
     /**
@@ -76,7 +64,6 @@ class DatabaseSeeder extends Seeder
         foreach ($campaigns as $campaign) {
             foreach ($appTokens as $appToken) {
                 Notification::factory()->create([
-                    'account_id' => $campaign->account_id,
                     'notification_campaign_id' => $campaign->id,
                     'app_token_id' => $appToken->id,
                 ]);
@@ -85,15 +72,12 @@ class DatabaseSeeder extends Seeder
     }
 
     /**
-     * @param Account $account
      * @param int $count
      * @return Collection<Company>
      */
-    private function createCompanies(Account $account, int $count = 5): Collection
+    private function createCompanies(int $count = 5): Collection
     {
-        return Company::factory($count)->create([
-            'account_id' => $account->id,
-        ]);
+        return Company::factory($count)->create();
     }
 
     /**
@@ -104,7 +88,6 @@ class DatabaseSeeder extends Seeder
     private function createCompanyItems(Company $company, int $count = 10): Collection
     {
         return Item::factory($count)->create([
-            'account_id' => $company->account_id,
             'company_id' => $company->id,
         ]);
     }

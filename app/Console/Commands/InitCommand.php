@@ -28,7 +28,7 @@ class InitCommand extends Command
     {
         User::create([
             'name' => 'admin',
-            'email' => 'admmin@gmail.com',
+            'email' => 'admin@gmail.com',
             'status' => User::STATUS_ACTIVE,
             'level' => User::LEVEL_USER,
             'phone' => '380998494',
