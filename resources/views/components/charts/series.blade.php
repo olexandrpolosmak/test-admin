@@ -2,8 +2,6 @@
     'width' => 'max-w-sm'
 ])
 @php
-// dd($width);
-//     $width = 'max-w-sm';
 @endphp
 <div class="{{$width}} w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
     <div class="flex justify-between">

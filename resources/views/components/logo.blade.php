@@ -6,7 +6,6 @@
         'left' => 'gap-2',
         default => 'flex-col items-center',
     };
-    // dd($imageAlignmentClass);
 @endphp
 <div class="{{$imageAlignmentClass}} flex text-center">
     <img src="{{ asset('images/dots-icon-64.png') }}"

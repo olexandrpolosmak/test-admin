@@ -34,7 +34,7 @@ class GenerateSitemapHandler
         $users = User::limit(50)->get();
         foreach ($users as $user) {
             $this->addUrlToSitemap(
-                route('user.edit', $user->id),
+                route('users.edit', $user->id),
                 0.8,
             );
         }
@@ -45,7 +45,7 @@ class GenerateSitemapHandler
         $companies = Company::limit(100)->get();
         foreach ($companies as $company) {
             $this->addUrlToSitemap(
-                route('company.edit', $company->id),
+                route('companies.edit', $company->id),
                 0.8,
             );
         }

@@ -87,7 +87,7 @@ Route::get('notification-campaigns',
     ->name('notification-campaigns.index');
 
 
-Route::get('/login', function () {
+Route::get('admin/login', function () {
     return view('login');
 })->name('auth.signIn');
 Route::post('auth/account/login', SignInController::class)
