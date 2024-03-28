@@ -21,6 +21,7 @@ class InitCommand extends Command
     {
         $this->createUser();
         $this->makeStoragePublic();
+        $this->generateSitemap();
     }
 
     private function createUser(): void
@@ -40,6 +41,11 @@ class InitCommand extends Command
 
         $storage = __DIR__ . "/../../../storage";
         system("sudo chmod -R 777 " . $storage);
+    }
+
+    private function generateSitemap(): void
+    {
+        $this->call('sitemap:generate');
     }
 
 
