@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 class InitCommand extends Command
 {
     protected $signature = 'init:app
-    {weakPassword: Provide a weak password for the user, for example: 123456}';
+    {weakPassword : Provide a weak password for the user, for example: 123456}';
 
     public function handle(): void
     {
