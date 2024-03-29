@@ -8,8 +8,10 @@
 namespace App\Console\Commands;
 
 
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 
 class InitCommand extends Command
@@ -19,6 +21,7 @@ class InitCommand extends Command
 
     public function handle(): void
     {
+        Artisan::call('db:seed');
         $this->createUser();
         $this->makeStoragePublic();
         $this->generateSitemap();
@@ -47,6 +50,5 @@ class InitCommand extends Command
     {
         $this->call('sitemap:generate');
     }
-
 
 }
